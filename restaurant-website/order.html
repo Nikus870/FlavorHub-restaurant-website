@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Online | FlavorHub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="site-header"></div>
+
+    <main>
+
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1>Order Online</h1>
+                <p>Choose your favourite dishes and place your order.</p>
+            </div>
+        </section>
+
+        <!-- Order Section -->
+        <section class="section">
+            <div class="container">
+
+                <div class="order-layout">
+
+                    <!-- MENU -->
+                    <div class="order-menu">
+
+                        <div class="section-heading left">
+                            <span class="eyebrow">OUR MENU</span>
+                            <h2>Choose Your Dishes</h2>
+                            <p>Add your favourite dishes to the cart.</p>
+                        </div>
+
+                        <!-- Category Buttons -->
+                        <div class="category-buttons">
+                            <button class="category-btn active"
+                                    onclick="filterOrderMenu('All', this)">
+                                All
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Appetizers', this)">
+                                Appetizers
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Main Course', this)">
+                                Main Course
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Pizzas', this)">
+                                Pizzas
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Burgers & Sandwiches', this)">
+                                Burgers
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Desserts', this)">
+                                Desserts
+                            </button>
+
+                            <button class="category-btn"
+                                    onclick="filterOrderMenu('Beverages', this)">
+                                Beverages
+                            </button>
+                        </div>
+
+                        <!-- Products -->
+                        <div id="order-menu-grid" class="menu-grid">
+                            <!-- JavaScript will load products here -->
+                        </div>
+
+                    </div>
+
+
+                    <!-- CART -->
+                    <aside class="cart-panel">
+
+                        <div class="cart-header">
+                            <h2>Your Cart</h2>
+                            <span id="cart-count">0 items</span>
+                        </div>
+
+                        <!-- Cart Items -->
+                        <div id="cart-items" class="cart-items">
+
+                            <div class="empty-cart">
+                                <div class="empty-cart-icon">🛒</div>
+                                <h3>Your cart is empty</h3>
+                                <p>Add some delicious dishes to continue.</p>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Coupon -->
+                        <div class="coupon-box">
+
+                            <label for="coupon">
+                                Coupon Code
+                            </label>
+
+                            <div class="coupon-row">
+
+                                <input
+                                    type="text"
+                                    id="coupon"
+                                    placeholder="Enter coupon"
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline"
+                                    onclick="applyCoupon()">
+                                    Apply
+                                </button>
+
+                            </div>
+
+                            <small id="coupon-message"></small>
+
+                        </div>
+
+
+                        <!-- Summary -->
+                        <div class="cart-summary">
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <strong id="cart-subtotal">₹0</strong>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>Delivery</span>
+                                <strong id="delivery-charge">₹40</strong>
+                            </div>
+
+                            <div class="summary-row discount-row">
+                                <span>Discount</span>
+                                <strong id="cart-discount">-₹0</strong>
+                            </div>
+
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <strong id="cart-total">₹0</strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Checkout -->
+                        <button
+                            type="button"
+                            id="checkout-btn"
+                            class="btn btn-primary checkout-btn"
+                            onclick="openCheckout()">
+                            Proceed to Checkout
+                        </button>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Checkout Modal -->
+        <div id="checkout-modal" class="checkout-modal">
+
+            <div class="checkout-content">
+
+                <button
+                    type="button"
+                    class="close-checkout"
+                    onclick="closeCheckout()">
+                    ×
+                </button>
+
+                <h2>Checkout</h2>
+
+                <p class="checkout-note">
+                    Enter your details to place the order.
+                </p>
+
+                <form id="checkout-form">
+
+                    <div class="form-group">
+                        <label for="customer-name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customer-name"
+                            required
+                            placeholder="Enter your name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="customer-phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customer-phone"
+                            required
+                            placeholder="Enter phone number">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="customer-address">
+                            Delivery Address
+                        </label>
+
+                        <textarea
+                            id="customer-address"
+                            required
+                            placeholder="Enter complete delivery address"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="payment-method">
+                            Payment Method
+                        </label>
+
+                        <select id="payment-method" required>
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="Cash on Delivery">
+                                Cash on Delivery
+                            </option>
+
+                            <option value="UPI">
+                                UPI
+                            </option>
+
+                            <option value="Card">
+                                Debit / Credit Card
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+                        Place Order
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Order Success -->
+        <div id="order-success" class="order-success">
+
+            <div class="success-box">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>Order Placed Successfully!</h2>
+
+                <p id="order-success-message">
+                    Your order has been received.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="closeSuccess()">
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+
+
+    <!-- JavaScript -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+document.addEventListener("DOMContentLoaded",()=>{
+const r=document.getElementById("register-form");if(r)r.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(r).entries());localStorage.setItem("flavorhubUser",JSON.stringify(d));document.getElementById("auth-message").innerHTML='<div class="success">Account created successfully. You can now login.</div>';r.reset()};
+const l=document.getElementById("login-form");if(l)l.onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(l).entries()),u=JSON.parse(localStorage.getItem("flavorhubUser")||"null");if(u&&u.email===d.email&&u.password===d.password){localStorage.setItem("flavorhubLoggedIn","true");document.getElementById("auth-message").innerHTML='<div class="success">Login successful.</div>'}else document.getElementById("auth-message").innerHTML='<div class="error">Invalid email or password. Register first if you are a new user.</div>'};
+});
