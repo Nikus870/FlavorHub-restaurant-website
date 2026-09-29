@@ -29,3 +29,5 @@ https://www.freeinternships.in/blog/
 
 ## Note
 This is a frontend-only internship project. No database or real payment gateway is used.
+
+created by nikhil verma
